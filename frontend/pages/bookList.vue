@@ -1,15 +1,20 @@
-<script setup>
+<script setup lang="ts">
+  import { Book } from '~/types/book';
   const router = useRouter()
+  const { data: books } = await useFetch<Book[]>(
+    'http://localhost:8000/api/books',
+    {}
+  )
 </script>
 
 <template>
   <div>
     <h1>書籍一覧</h1>
-    <br />
+    <NuxtLink to="/bookDetail/1">１番目の本</NuxtLink>
     <ul>
-      <li><NuxtLink to="bookDetail/1">書籍1</NuxtLink></li>
-      <li><NuxtLink to="bookDetail/2">書籍2</NuxtLink></li>
-      <li><NuxtLink to="bookDetail/3">書籍3</NuxtLink></li>
+      <li v-for="book in books" :key="book.id">
+        <NuxtLink :to="'/bookDetail/' + book.id">{{ book.name }}</NuxtLink>
+      </li>
     </ul>
     <br />
     <input type="button" value="戻る" @click="router.back()" />

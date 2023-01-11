@@ -68,4 +68,12 @@ class ReviewController extends Controller
     {
         //
     }
+
+    /**
+     * 最新の50件のレビューを取得する
+     */
+    public function newestReview()
+    {
+        return Review::latest()->take(50)->get();
+    }
 }

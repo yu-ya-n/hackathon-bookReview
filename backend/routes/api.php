@@ -21,6 +21,8 @@ Route::apiResources([
     'reviews' => ReviewController::class
 ]);
 
+Route::get('/newestReview', [ReviewController::class, 'newestReview']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
