@@ -1,7 +1,6 @@
 <script setup lang="ts">
   import { Review } from '~/types/review';
   const route = useRoute()
-  const router = useRouter()
   const { data } = await useFetch<Review>(
     'http://localhost:8000/api/reviews/' + route.params.id,
     {}
@@ -15,6 +14,6 @@
     レビュー：{{ data?.review }}
     <br />
     <br />
-    <input type="button" value="戻る" @click="router.back()" />
+    <BackButton />
   </div>
 </template>

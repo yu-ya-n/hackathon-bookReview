@@ -2,9 +2,24 @@
 
 <template>
   <div>
-    <h1>僕の考えた最強の書評投稿サイト！</h1>
-    <NuxtLink to="/bookList"> 本一覧</NuxtLink>
+    <v-btn
+      class="mt-10"
+      color="primary"
+      prepend-icon="mdi-book"
+      to="/bookList"
+      nuxt
+    >
+      書籍一覧
+    </v-btn>
     <br />
-    <NuxtLink to="/newestReview"> 最新レビューTOP50！</NuxtLink>
+    <v-btn
+      class="mt-10"
+      prepend-icon="mdi-star"
+      color="yellow"
+      to="/newestReview"
+      nuxt
+    >
+      最新レビューTOP50！
+    </v-btn>
   </div>
 </template>

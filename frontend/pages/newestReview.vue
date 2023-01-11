@@ -1,6 +1,5 @@
 <script setup lang="ts">
   import { Review } from '~/types/review';
-  const router = useRouter()
   const { data: reviews } = await useFetch<Review[]>(
     'http://localhost:8000/api/newestReview',
     {}
@@ -19,6 +18,6 @@
       </li>
     </ul>
 
-    <input type="button" value="戻る" @click="router.back()" />
+    <BackButton />
   </div>
 </template>

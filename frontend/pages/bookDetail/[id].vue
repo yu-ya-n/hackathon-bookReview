@@ -1,11 +1,18 @@
 <script setup lang="ts">
   import { Book } from '~/types/book';
   const route = useRoute()
-  const router = useRouter()
+  const rating = ref(0)
   const { data } = await useFetch<Book>(
     'http://localhost:8000/api/books/' + route.params.id,
     {}
   )
+
+  const postData = { book_id: 1, review: 'abcdefg' }
+
+  const { response } = await useFetch('http://localhost:8000/api/reviews/', {
+    method: 'POST',
+    body: postData
+  })
 </script>
 
 <template>
@@ -23,11 +30,13 @@
     発行日：{{ data?.published_at }}
     <br />
     <br />
-    <textarea></textarea>
+    <v-textarea auto-grow></v-textarea>
+    <v-rating v-model="rating" color="blue" size="30"></v-rating>
     <br />
-    <input type="button" value="レビューを投稿する！" />
+    <v-btn class="mt-10" color="yellow" prepend-icon="mdi-send" nuxt>
+      レビューを投稿する！
+    </v-btn>
     <br />
-    <br />
-    <input type="button" value="戻る" @click="router.back()" />
+    <BackButton />
   </div>
 </template>
